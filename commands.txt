@@ -1,0 +1,1 @@
+nasm -f elf32 file_name.asm -o file_name.o && ld -m elf1386 file_name.o -o file_name

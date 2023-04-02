@@ -34,7 +34,8 @@ echo "$full_path" > $storing_file_name #stores the full_path in $storing_file_na
 # Assemble and link the file
 if nasm -f elf32 "$full_path.asm" -o "$directory/bin/$file_name.o" && ld -m elf_i386 "$directory/bin/$file_name.o" -o "$directory/bin/$file_name"; then
     # Print success message
-    echo "$file_name has been assembled and linked successfully!"
+    echo "$file_name has been assembled and linked successfully! Here's the output of the program:
+"
     # Remove object file
     rm "$directory/bin/$file_name.o"
     # Run executable
