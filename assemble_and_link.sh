@@ -1,6 +1,16 @@
 #!/bin/bash
 
+if [ ! -d "bin" ]
+then
+    mkdir bin
+fi
+
 readonly storing_file_name=stored_path.txt
+if [ ! -f "$storing_file_name" ]; then
+  # create the file if it doesn't exist
+  touch "$storing_file_name"
+  echo "File created: $storing_file_name"
+fi
 readonly stored_path=$(cat $storing_file_name)
 # Prompt user for input if stored path is empty
 if [ -s "$storing_file_name" ]; then
