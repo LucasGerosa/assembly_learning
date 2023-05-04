@@ -16,13 +16,13 @@ section .data ;section for constants
 
 section .text ;directive that specifies the section of the program containing executable code.
 _start:
-	mov eax, 4 ;sys_write system call
-	mov ebx, 1 ;standard output
+	mov eax, 4 ;Set the exit syscall number (1): 		sys_write system call
+	mov ebx, 0 ;standard output
 	mov ecx, msg
 	mov edx, len
 	int 0x80 ;the 0x denotes a hexadecimal number ;performs a system call
 
 	mov eax, 1 ;sys_write system call
-	mov ebx, 0 ;exit status is 0
+	xor ebx, ebx ;equivalent to mov ebx, 0, but more efficient exit status is 0
 	int 0x80
 

@@ -19,7 +19,7 @@ if [ -s "$storing_file_name" ]; then
 	# read full_path
 		#Is the same as 
 	read -r -p "Please enter the path to your assembly file (without .asm extension), or press enter to assemble and run 
-$stored_path
+${stored_path}
 " full_path
 	
 	if [ -z "$full_path" ]; then
@@ -31,13 +31,13 @@ else
     read -p "Please enter the full path of your program: " full_path
 fi
 
-file_name=$(basename $full_path)
+file_name=$(basename "$full_path")
 if [[ $file_name == *.asm ]]; then
     file_name=${file_name%.*}
 else
     file_name=$file_name
 fi
-directory=$(dirname $full_path)
+directory=$(dirname "$full_path")
 full_path=$directory/$file_name
 echo "$full_path" > $storing_file_name #stores the full_path in $storing_file_name
 
@@ -50,7 +50,8 @@ if nasm -f elf32 "$full_path.asm" -o "$directory/bin/$file_name.o" && ld -m elf_
     rm "$directory/bin/$file_name.o"
     # Run executable
     "$directory/bin/$file_name"
-    echo $?
+    echo ""
+    echo "Exit code: "$?
 else
     # Print error message
     echo "Error assembling or linking $file_name."
